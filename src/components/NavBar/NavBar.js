@@ -3,24 +3,31 @@ import {AppBar,Toolbar,Typography,IconButton,Button} from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import {Link} from "react-router-dom"
+import {ItemsNavBar} from './NavBar.style';
 
-const NavBar = () => {
 
+const NavBar = (props) => {
+const {NavBarStyle} = props;
         return (
-        <AppBar position="static">
-            <Toolbar>
-                <Typography variant="h6">
-                Guayerd Bikes
-                </Typography>
-                <Button color="inherit">Home</Button>
-                <Button color="inherit">Nosotros</Button>
-                <IconButton edge="start" color="inherit" aria-label="nosotros">
-                Productos
-                <ArrowDropDownIcon />
-                </IconButton>
-                <Button color="inherit">Contacto</Button>
-            </Toolbar>
-        </AppBar>
+          <>
+          <AppBar color="primary" position="fixed">
+              <Toolbar>
+                  <Typography variant="h6" style={{marginRight:600}}>
+                  Guayerd Bikes
+                  </Typography>
+                  <Typography variant="body1"><Link to="/Home" style={ItemsNavBar}>HOME</Link></Typography>
+                  <Button color="inherit"><Typography variant="body1"><Link to="/Nosotros" style={ItemsNavBar}>NOSOTROS</Link></Typography></Button>
+                  <IconButton edge="start" color="inherit" aria-label="nosotros">
+                  <Typography variant="body1">
+                  <Link to="/Productos" style={ItemsNavBar}>PRODUCTOS</Link>
+                  </Typography>
+                  <ArrowDropDownIcon />
+                  </IconButton>
+                  <Button color="inherit"><Typography variant="body1"><Link to="/Contacto" style={ItemsNavBar}>CONTACTO</Link></Typography></Button>
+              </Toolbar>
+          </AppBar>
+          </>
           );
         }
     

@@ -1,17 +1,26 @@
 
 import './App.css';
-import { Button } from '@material-ui/core';
+import { Button,Typography } from '@material-ui/core';
 import {createTheme,ThemeProvider} from "@material-ui/core/styles"
-import NavBar from "./components/NavBar/NavBar"
+import {NavBar,CardsProductos,Home, Nosotros, Contacto, Productos} from "./components"
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 
 function App() {
   
   
   return (
     <>
-    <ThemeProvider>
-      <NavBar/>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider>
+        <NavBar/>
+        <Routes>
+          <Route path="/Home" element={<Home/>}/>
+          <Route path="/Nosotros" element={<Nosotros/>}/>
+          <Route path="/Productos" element={<Productos/>}/>
+          <Route path="/Contacto" element={<Contacto/>}/>
+        </Routes>
+      </ThemeProvider>
+    </Router>
     </>
   );
 }
