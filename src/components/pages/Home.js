@@ -1,22 +1,19 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import Button from "../Button/Button"
+import Carousel from "../Carousel/Carousel"
+import Button from '@mui/material/Button'
+
 
 const Home = () => {
     return (
         <>
-        <h1>Home</h1>
-        <h1>Home</h1>
-        <p>Lorem    lkflskefse
-            sefsfesfe
-            fessfefes
-            sef
-            fe
-            fes
-            sfe
-            fe
-        </p>
-        <Button>Bienvenidos</Button>
+        <div style={{display: "flex",flexDirection:"column",justifyContent:"center",alignItems: "center",marginTop:50}}>
+            <Carousel/>
+            <h5>¿Desea registrarse? haga click en "Registrarme"</h5>
+            <Button variant="contained" color="primary" style={{width:150}}>
+            Registrarme
+            </Button>
+        </div>
         </>
     )
 }
