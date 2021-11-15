@@ -1,17 +1,13 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import Axios from "axios"
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,79 +30,73 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
   
-  export default function CardsProductos() {
+  const CardsProductos = () => {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-  
-    const handleExpandClick = () => {
-      setExpanded(!expanded);
-    };
+
+    const [bicicletas, setBicicletas] = useState("");
+
+    const llamadaApi = async() => {
+        let url = "https://demo2420474.mockable.io/productList"
+        const respuesta = await Axios.get(url)
+        setBicicletas(respuesta.data)
+    }
+
+    useEffect(() => {
+        llamadaApi();
+    }, [])
   
     return (
-      <Card className={classes.root}>
-        <CardHeader
-          title="Bicicletas"
-          subheader="September 14, 2016"
-        />
-        <CardMedia
-          className={classes.media}
-          image="https://http2.mlstatic.com/D_NQ_NP_2X_960704-MLA45090076994_032021-F.webp"
-          title="Bicicletas"
-        />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-           Precio $ 25.000 <br/>
-           Velocidad: 150km
-          </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-          <IconButton style={{borderRadius:0}}
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-              <Typography variant="body1" color="initial">Ver más</Typography>
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Method:</Typography>
-            <Typography paragraph>
-              Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-              minutes.
-            </Typography>
-            <Typography paragraph>
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-              heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-              browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-              pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-              saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-            </Typography>
-            <Typography paragraph>
-              Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-              without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-              medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-              again without stirring, until mussels have opened and rice is just tender, 5 to 7
-              minutes more. (Discard any mussels that don’t open.)
-            </Typography>
-            <Typography>
-              Set aside off of the heat to let rest for 10 minutes, and then serve.
-            </Typography>
-          </CardContent>
-        </Collapse>
-      </Card>
-    );
-  }
+      <>
+        
+      {bicicletas && bicicletas.map((b) => {
+        return(
+          <>
+          <Grid
+          container
+          spacing={3}
+          cols={3}
+          cellHeight={200}
+          direction="row"
+          justify="center"
+          alignItems="center"
+          alignContent="center"
+          wrap="nowrap"
+          
+        >
+            <Card className={classes.root}>
+              <CardHeader
+                title={b.title}
+              />
+              <CardMedia
+                className={classes.media}
+                image={b.imgUrl}
+                title={b.title}
+              />
+                <CardContent>
+                <Typography variant="body1" color="textSecondary" component="p">
+                  {b.inStock}u. disponibles <br/>
+                  </Typography>
+                  <Typography variant="body1" color="textSecondary" component="p">
+                  {b.currency} {b.price} <br/>
+                  </Typography>
+                </CardContent>
+                  <CardContent>
+                    <Typography paragraph>
+                      {b.description}
+                    </Typography>
+                  </CardContent>
+            </Card>
+            </Grid>
+          </>
+        )
+      })} 
+     
+      
+      </>
+        
+      )
+      
+   }
+  
 
-/* const CardsProductos = () => {
-    return (
-        <h1>Sección de Cards de productos</h1>
-    )
-}
-
-export default CardsProductos */
+  export default CardsProductos
