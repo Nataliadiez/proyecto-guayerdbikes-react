@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 1),
     marginTop: 'auto',
     backgroundColor: '#004ba0',
-    position: 'absolute',
     width:'100%',
   },
   grid: {

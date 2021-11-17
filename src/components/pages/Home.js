@@ -7,7 +7,7 @@ import CarouselProductos from '../CarouselProductos/CarouselProductos'
 const Home = () => {
     return (
         <>
-        <div style={{display: "flex",flexDirection:"column",justifyContent:"center",alignItems: "center",marginTop:50}}>
+        <div style={{background:'white',display: "flex",flexDirection:"column",justifyContent:"center",alignItems: "center",marginTop:50}}>
             <CarouselHome/>
                 <div className="container d-flex flex-column justify-content-center alignt-items-center">
                     <h5 style={{marginTop:'50px',textAlign:'center'}}>Algunos de nuestros productos</h5>
