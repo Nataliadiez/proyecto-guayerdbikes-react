@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import * as yup from "yup"
 import {FormikProvider,useFormik,ErrorMessage} from "formik";
+import Typography from '@mui/material/Typography'
 
 
 
@@ -20,14 +21,16 @@ const Registrarse = () =>{
 
       const guardado= 
       <div className="container d-flex align-items-center justify-content-center mt-5">
-          ¡Gracias {nombre}!
-          Te enviaremos las ofertas y novedades de 
-          GUAYERD-BIKES.
+          <Typography variant="body1" color="primary">
+            ¡Gracias {nombre}!
+            Te enviaremos las ofertas y novedades de 
+            GUAYERD-BIKES.
+          </Typography>
       </div>
 
       const alert=
       <div className="container d-flex align-items-center justify-content-center mt-5">
-        <img className="load" style={{width:'100%',height:'100px',borderRadius:'5px',boxShadow:'5px 5px 5px grey'}} src="https://c.tenor.com/3DZxj_YTUAwAAAAM/cyclist-biking.gif"></img>
+        <img className="load" style={{width:'200px',height:'100px',borderRadius:'5px',boxShadow:'5px 5px 5px grey'}} src="https://c.tenor.com/3DZxj_YTUAwAAAAM/cyclist-biking.gif"></img>
       </div>
 
      const guardar=() => {
@@ -105,8 +108,8 @@ const Registrarse = () =>{
                     
                   />
                   <div className="container d-flex align-items-around justify-content-center">
-                      <Button type="submit" variant="contained" color="primary">
-                        Enviar
+                      <Button style={{marginRight:'7px'}} type="submit" variant="contained" color="primary">
+                        Guardar
                       </Button>
 
                       <Button onClick={()=>Cancelar()} variant="contained" color="primary">
@@ -132,7 +135,7 @@ const Registrarse = () =>{
 
     return(
         <>
-            <div className="container d-flex align-items-center justify-content-center mb-5">
+            <div style={{marginBottom:'50px'}} className="container d-flex align-items-center justify-content-center">
                 <Button onClick={()=>IrForm()} variant="contained" color="primary">
                 ¡Registrate!
                 </Button>

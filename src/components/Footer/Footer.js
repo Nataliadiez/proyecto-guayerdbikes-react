@@ -9,7 +9,7 @@ import Box from "@material-ui/core/Box"
 
 function Copyright() {
   return (
-    <Typography className="mt-2" variant="body2" color="textSecondary">
+    <Typography className="mt-2" variant="body2" style={{color:'white'}}>
       {'Copyright © '}
       <Link color="inherit" href="https://ferlunaDiseños.com/">
         FERLUNA
@@ -23,19 +23,19 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display:'flex',
+    position: 'absolute',
     flexDirection: 'column',
     minHeight: '100vh',
-  },
-  main: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2),
+    width:'100%',
+    height: '20px'
   },
   footer: {
     padding: theme.spacing(1, 1),
     marginTop: 'auto',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+    backgroundColor: '#004ba0',
+    position: 'absolute',
+    width:'100%',
   },
   grid: {
       justifyContent: 'center',
@@ -62,25 +62,25 @@ export default function Footer() {
       <footer className={classes.footer}>
         <Container maxWidth="sm" className={classes.grid}>
             <Grid container spacing={0}>
-                <Grid style={{marginLeft:'22%'}} item xs={12} sm={3}>
+                <Grid style={{marginLeft:'22%'}} item xs={3}>
                     <Box>
                     <Link className={classes.hoverImg} href="https://www.instagram.com"><img src="instagramLogo.png" className={classes.img}></img></Link>
                     </Box>
                 </Grid>
 
-                <Grid style={{marginLeft:'-15%'}} item xs={12} sm={3}>
+                <Grid style={{marginLeft:'-15%'}} item xs={3}>
                     <Box>
                     <Link className={classes.hoverImg} href="https://www.facebook.com"><img src="facebookLogo.png" className={classes.img}></img></Link>
                     </Box>
                 </Grid>
 
-                <Grid style={{marginLeft:'-15%'}} item xs={12} sm={3}>
+                <Grid style={{marginLeft:'-15%'}} item xs={3}>
                     <Box>
                     <Link className={classes.hoverImg} href="https://www.whatsapp.com"><img src="whatsapLogo.png" className={classes.img}></img></Link>
                     </Box>
                 </Grid>
 
-                <Grid style={{marginLeft:'-15%'}} item xs={12} sm={3}>
+                <Grid style={{marginLeft:'-15%'}} item xs={3}>
                     <Box>
                     <Link className={classes.hoverImg} href="https://www.gmail.com"><img src="emailLogo.png" className={classes.img}></img></Link>
                     </Box>

@@ -27,10 +27,12 @@ const useStyles = makeStyles((theme) => ({
         display:"flex", 
         flexDirection:"column",
         justifyContent:"center", 
-        alignItems:"center"
+        alignItems:"center",
+        width:'100%'
     },
     mensaje: {
-        width:'222px'
+        width:'300px',
+        background:'white'
     },
     formControl: {
         margin: theme.spacing(1),
@@ -39,6 +41,15 @@ const useStyles = makeStyles((theme) => ({
       selectEmpty: {
         marginTop: theme.spacing(2),
       },
+      estiloFormulario: {
+          boxShadow:'5px 5px 10px grey',
+          padding:'10px',
+          paddingTop: '20px',
+          paddingBottom: '20px',
+          width:'45%',
+          borderRadius:'10px',
+          background:'white'
+      }
     }));
 
     
@@ -65,6 +76,7 @@ const Formulario = () => {
             
             telefono: yup
                 .string()
+                .nullable()
                 .required("El campo teléfono es requerido")
                 .matches(phoneRegExp, 'El número de teléfono no es válido')
                 .min(8, "El número es muy corto"),
@@ -95,8 +107,8 @@ const Formulario = () => {
           }
 
     return (
-        <div style={{marginTop:100}} className="container">
-            <Typography align="center" variant="h4" color="initial">Contacto</Typography>
+        <div style={{marginTop:100}} className={classes.estiloFormulario}>
+            <Typography style={{marginBottom:'20px'}} align="center" variant="h5" color="initial">Envianos tu mensaje</Typography>
             <FormikProvider value={formik}>
                 <form onSubmit={formik.handleSubmit} className={classes.displayFlex}>
                 <TextField
@@ -108,6 +120,7 @@ const Formulario = () => {
                     background=""
                     value={formik.values.nombre}
                     onChange={formik.handleChange}
+                    className={classes.mensaje}
                     error={formik.touched.nombre && Boolean(formik.errors.nombre)}
                     helperText={formik.errors.nombre ? <ErrorMessage name="nombre"/> : ""}
                     />
@@ -121,6 +134,7 @@ const Formulario = () => {
                     variant="outlined"
                     value={formik.values.email}
                     onChange={formik.handleChange}
+                    className={classes.mensaje}
                     error={formik.touched.email && Boolean(formik.errors.email)}
                     helperText={formik.errors.email ? <ErrorMessage name="email"/> : ""} 
                     />
@@ -133,6 +147,7 @@ const Formulario = () => {
                     variant="outlined"
                     value={formik.values.telefono}
                     onChange={formik.handleChange}
+                    className={classes.mensaje}
                     error={formik.touched.telefono && Boolean(formik.errors.telefono)}
                     helperText={formik.errors.telefono ? <ErrorMessage name="telefono"/> : ""} 
                     />
@@ -145,6 +160,7 @@ const Formulario = () => {
                             onChange={formik.handleChange}
                             label="Asunto"
                             name="asunto"
+                            className={classes.mensaje}
                             >
                             <MenuItem value="venta" default>Venta</MenuItem>
                             <MenuItem value="reparacion">Reparación</MenuItem>
