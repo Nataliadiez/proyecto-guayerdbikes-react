@@ -5,11 +5,11 @@ import AlertaContacto from '../AlertaContacto/AlertaContacto'
 
 const Contacto = () => {
     return (
-        <>
-        <h1>Bienvenidos</h1> 
-        <Formulario/>
-        <AlertaContacto/>
-        </>
+        <div className="container d-flex flex-column align-items-center">
+            <h1>Bienvenidos</h1> 
+            <Formulario/>
+            <AlertaContacto/>
+        </div>
             
     )
 }

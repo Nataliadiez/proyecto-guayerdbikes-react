@@ -5,8 +5,8 @@ import Typography from '@material-ui/core/Typography'
 const Nosotros = () => {
     return (
         <>
-        <div className="container" style={{marginTop:100}}>
-        <Typography align="center" variant="h4" color="initial">Guayerd Bikes</Typography>
+        <div className="container" style={{marginTop:100,width:'60%'}}>
+        <Typography align="left" variant="h4" color="initial">Guayerd Bikes</Typography>
         <Typography align="justify" variant="body" color="initial">
             Bill Jobs (1947-2003) fue el fundador de Guayerd Bikes. Un auténtico visionario que decidió dedicar su vida a la bicicleta después de un viaje a EE.UU en los ’70. En dicho viaje Bill encontró, en una tienda de bicicletas, un cartel en el que ponía que, debido a su baja calidad, no se admitían bicicletas fabricadas en Argentina para su reparación.<br/>
 
@@ -20,8 +20,8 @@ const Nosotros = () => {
 
             Guayerd está consolidado como el segundo mayor fabricante de bicicletas, con una producción anual total de más de 3 millones de bicicletas, producidas en las fábricas de Argentina y China.<br/><br/>
         </Typography>
-
-        <Typography align="center" variant="h4" color="initial">Innovación</Typography>
+        <hr/>
+        <Typography align="left" variant="h4" color="initial">Innovación</Typography>
         <Typography align="justify" variant="body" color="initial">
             La historia de cada bicicleta GUAYERD empieza sólo a 100km del lugar donde la historia de la bicicleta comenzó en 1817. Justo a las afueras de Stuttgart, corazón de Alemania en innovaciones del sector automovilístico y bastión de marcas líderes en tecnología como Porsche o Mercedes-Benz, es donde tienen su base los diseñadores e ingenieros del departamento de I+D de GUAYERD. Es aquí donde todas nuestras bicicletas se inventan, planifican y desarrollan para su distribución internacional en 77 países.<br/>
 
@@ -29,8 +29,8 @@ const Nosotros = () => {
 
             Allí, nuestros expertos debaten y revisan con los especialistas taiwaneses cada paso: desde el primer prototipo hasta el modelo de serie perfectamente acabado. Cada bicicleta que sale completamente montada de una de las tres fábricas en Asia es realmente única. Porque cuando una bici está camino a su nuevo dueño en cualquiera de los 77 países del mundo en los que se distribuye GUAYERD, no sólo el departamento de I+D alemán ha infundido vida en la bicicleta, sino que cada una de las personas involucradas en el proceso de fabricación ha velado para que una genuina bicicleta se haya fabricado con el mayor cuidado posible.<br/><br/>
         </Typography>
-
-        <Typography align="center" variant="h4" color="initial">Bicis</Typography>
+        <hr/>
+        <Typography align="left" variant="h4" color="initial">Bicis</Typography>
         <Typography align="justify" variant="body" color="initial">
             GUAYERD Industry Co.,Ltd, no sólo mira atrás con su experiencia de 40 años usando aleaciones de materias primas clásicas que necesitan un elaborado procesamiento. Para lograr la mayor calidad de bicicletas de carbono de gama alta, la compañía decidió trabajar exclusivamente con proveedores de primera calidad especializados en materias compuestas.<br/>
 
@@ -38,8 +38,8 @@ const Nosotros = () => {
 
             En sus más de 25 años de historia GUAYERD ha logrado éxitos de todo tipo, desde Campeonatos del Mundo, Oros Olímpicos, reconocimientos como la mejor empresa Taiwanesa e incluso reconocimientos al propio producto. En el año 2016 GUAYERD, con su cuadro Scultura LTD, puso en el mercado la bicicleta de producción más ligera del mundo con un peso total de solo 4,55kg y un peso del cuadro inferior a los 800g. Pero GUAYERD no necesita que nadie apruebe o de el visto bueno a sus productos. Nosotros somos los que mejor conocemos nuestra marca, la calidad de nuestros productos y el desarrollo que implican y por ello GUAYERD ofrece garantía de por vida en todos sus cuadros, porque nadie confía en nuestras bicicletas más que nosotros.<br/><br/>
         </Typography>
-
-        <Typography align="center" variant="h4" color="initial">Más éxitos</Typography>
+        <hr/>
+        <Typography align="left" variant="h4" color="initial">Más éxitos</Typography>
         <Typography align="justify" variant="body" color="initial">
             Durante más de una década, GUAYERD ha sido el principal patrocinador del MULTIVAN GUAYERD BIKING TEAM, con el que se han obtenido éxitos a nivel internacional y en 2013 se amplió la colaboración y presencia de GUAYERD con el ciclismo de alta competición al entrar a formar parte del LAMPRE-GUAYERD en el circuito UCI World Tour. Con este movimiento, GUAYERD ponía por primera vez en sus 25 años de historia sus bicicletas a competir al más alto nivel tanto en MTB como en carretera.<br/>
 
@@ -47,8 +47,8 @@ const Nosotros = () => {
 
             Franco Cervi es el jefe de ingenieros de GUAYERD y tú con tu GUAYERD te beneficias de los conocimientos de Franco y todo su equipo de ingenieros, además de toda la experiencia de profesionales como Sandro Guzmán, Pepe Sánchez o Rui Costa JR. Su éxito es nuestra motivación.<br/><br/>
         </Typography>
-
-        <Typography align="center" variant="h4" color="initial">Premios</Typography>
+        <hr/>
+        <Typography align="left" variant="h4" color="initial">Premios</Typography>
         </div>
     
         </>

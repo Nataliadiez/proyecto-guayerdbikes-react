@@ -19,18 +19,15 @@ const CarouselHome = () => {
 
   return(
     <>
-        <>
-          <Carousel autoPlay>
-            <div>
-              <img alt="Logo Guayerd Bikes" src="https://potencia.ar/img/guayerdBikes-logo.jpg" />
-            </div>
+      <Carousel autoPlay showThumbs={false}>
+        <div>
+          <img alt="Logo Guayerd Bikes" src="logoGuayerd.jpg"/>
+        </div>
 
-            <div>
-              <img alt={imgApi.title} src={imgApi.imgUrl}/>
-            </div>
-          </Carousel>
-        </>
-        
+        <div>
+            <img alt={imgApi.title} src={imgApi.imgUrl}/>
+        </div>
+      </Carousel>
         
     </>
   )

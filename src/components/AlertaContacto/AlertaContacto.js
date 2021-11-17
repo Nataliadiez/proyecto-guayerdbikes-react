@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -29,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
     color: "black"
   },
+  button:{
+    background: "whitesmoke",
+    border: "1px solid grey"
+  }
 }));
 
 
@@ -57,9 +62,13 @@ const AlertaContacto = () => {
   );
 
   return (
-    <div>
-      <Button type="button" onClick={handleOpen}>
-        Open Modal
+    <div className="container d-flex flex-column align-items-center mt-5">
+      <Typography className="mb-2" variant="body1" color="initial">
+        ¿Desea recibir un código de descuento?
+        Haga click aquí 
+      </Typography>
+      <Button className={classes.button} type="button" variant="outlined" onClick={handleOpen}>
+        Código de descuento
       </Button>
       <Modal
         open={open}

@@ -2,82 +2,122 @@ import React from "react";
 import { useState } from "react";
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
+import * as yup from "yup"
+import {FormikProvider,useFormik,ErrorMessage} from "formik";
+
 
 
 
 const Registrarse = () =>{
+  const [alerta,setAlerta] = useState("")
   const [mostrar,setMostrar] = useState(false)
+  const [nombre, setNombre] = useState("")
   //componente Form para registrarse
     const Form = () => {
-        const [nombre,setNombre] = useState("")
-        const [nom,setNom]=useState("")
-        const [alerta,setAlerta] = useState("")
-
-
-
-    const capturarNombre = (e) => {
-       setNombre(e.target.value)
-       setNom(e.target.value)
-       console.log(e.target.value)
-    }
-  const guardado= 
-  <div className="container d-flex align-items-center justify-content-center mt-5">
-      ¡Gracias {nombre}!
-      Te enviaremos las ofertas y novedades de 
-      GUAYERD-BIKES.
-  </div>
-  const alert=
-  <div className="container d-flex align-items-center justify-content-center mt-5">
-    <img className="load" style={{width:'100%',height:'100px',borderRadius:'5px',boxShadow:'5px 5px 5px grey'}} src="https://c.tenor.com/3DZxj_YTUAwAAAAM/cyclist-biking.gif"></img>
-  </div>
-     const guardar=() => {
         
+
+
+
+      const guardado= 
+      <div className="container d-flex align-items-center justify-content-center mt-5">
+          ¡Gracias {nombre}!
+          Te enviaremos las ofertas y novedades de 
+          GUAYERD-BIKES.
+      </div>
+
+      const alert=
+      <div className="container d-flex align-items-center justify-content-center mt-5">
+        <img className="load" style={{width:'100%',height:'100px',borderRadius:'5px',boxShadow:'5px 5px 5px grey'}} src="https://c.tenor.com/3DZxj_YTUAwAAAAM/cyclist-biking.gif"></img>
+      </div>
+
+     const guardar=() => {
+      setMostrar(false)
        setTimeout(()=>{
        setAlerta(alert)
-       localStorage.setItem("nombre",nombre)
+       setNombre(Formik.values.nombre)
+       localStorage.setItem("nombre",Formik.values.nombre)
        setTimeout(()=>{
             setAlerta(guardado)
-            setNom("")
             setTimeout(()=>{
                setAlerta("")
-                  setMostrar(false)
+                  
             },6000)
        },5000)
     },1000)
      }
+
+     const validaciones = yup.object({
+        nombre: yup
+          .string()
+          .required("Este campo es requerido"),
+
+        email: yup
+          .string()
+          .required("Este campo es requerido")
+          .email("El email es inválido")
+     })
+
+     
+
+     const Formik = useFormik({
+       initialValues:{
+         nombre:"",
+         email:""
+       },
+       validationSchema: validaciones,
+       onSubmit:(values => guardar())
+     })
+
+
     return(
         <>
         <div className="container d-flex align-items-center flex-column justify-content-center">
         <div style={{borderRadius:"5px",boxShadow:"5px 5px 10px grey",marginBottom:"10px"}}>
+          <FormikProvider value={Formik}>
+          <form onSubmit={Formik.handleSubmit}> 
             <div className="container mt-5 d-flex mb-5 align-items-center flex-column justify-content-center">
-                <TextField 
-                  style={{marginBottom:10}}
-                  label="Nombre"
-                  placeholder="Nombre"
-                  value={nom}
-                  onChange={(e)=>capturarNombre(e)}
-                  
-                />
+              
+                  <TextField 
+                    type="text"
+                    label="Nombre"
+                    placeholder="Susana"
+                    id="nombre"
+                    name="nombre"
+                    value={Formik.values.nombre}
+                    style={{marginBottom:10}}
+                    onChange={Formik.handleChange}
+                    error={Formik.touched.nombre && Boolean(Formik.errors.nombre)}
+                    helperText={Formik.errors.nombre ? <ErrorMessage name="nombre"/> : ""}
+                    
+                  />
 
-                <TextField
-                  style={{marginBottom:10}}
-                  placeholder="Email"
-                  label="Email"
-                  
-                />
-                <div className="container d-flex align-items-around justify-content-center">
-                    <Button onClick={()=>guardar()} variant="contained" color="primary">
-                      Guardar
-                    </Button>
+                  <TextField
+                    label="Email"
+                    placeholder="susana@dominio.com"
+                    id="email"
+                    name="email"
+                    type="text"
+                    style={{marginBottom:10}}
+                    value={Formik.values.email}
+                    onChange={Formik.handleChange}
+                    error={Formik.touched.email && Boolean(Formik.errors.email)}
+                    helperText={Formik.errors.email ? <ErrorMessage name="email"/> : ""}
+                    
+                  />
+                  <div className="container d-flex align-items-around justify-content-center">
+                      <Button type="submit" variant="contained" color="primary">
+                        Enviar
+                      </Button>
 
-                    <Button onClick={()=>Cancelar()} variant="contained" color="primary">
-                      Cancelar
-                    </Button>
-                </div>
+                      <Button onClick={()=>Cancelar()} variant="contained" color="primary">
+                        Cancelar
+                      </Button>
+                  </div>
+                
             </div>
+            </form>
+            </FormikProvider>
         </div>
-
-            <div style={{marginBottom:'20px'}}>{guardar?alerta:null}</div>
         
         </div>
         </>
@@ -100,6 +140,7 @@ const Registrarse = () =>{
             
             <div className="container d-flex align-items-center justify-content-center">
                 {mostrar?<Form/>:null}
+                {alerta?alerta:null}
             </div>
         </>
     )

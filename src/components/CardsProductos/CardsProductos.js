@@ -7,12 +7,23 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import Axios from "axios"
-import Grid from '@material-ui/core/Grid'
+import {Grid} from '@material-ui/core/'
+
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 345,
-      width: 320
+      width: 320,
+      flexGrow: 1,
+      boxShadow:'5px 5px 10px grey',
+      
+    },
+    color: {
+      color:'white'
     },
     media: {
       height: 0,
@@ -24,9 +35,6 @@ const useStyles = makeStyles((theme) => ({
       transition: theme.transitions.create('transform', {
         duration: theme.transitions.duration.shortest,
       }),
-    },
-    avatar: {
-      backgroundColor: red[500],
     },
   }));
   
@@ -47,53 +55,58 @@ const useStyles = makeStyles((theme) => ({
   
     return (
       <>
-        
-      {bicicletas && bicicletas.map((b) => {
+      <div className="container">
+      <Grid container spacing={3}>
+        {bicicletas && bicicletas.map((b) => {
         return(
           <>
-          <Grid
-          container
-          spacing={3}
-          cols={3}
-          cellHeight={200}
-          direction="row"
-          justify="center"
-          alignItems="center"
-          alignContent="center"
-          wrap="nowrap"
-          
-        >
-            <Card className={classes.root}>
-              <CardHeader
-                title={b.title}
-              />
-              <CardMedia
-                className={classes.media}
+            <Grid item xs={4}>
+              <Card className={classes.root}>
+              <CardMedia 
+                className={classes.media} 
                 image={b.imgUrl}
                 title={b.title}
               />
-                <CardContent>
-                <Typography variant="body1" color="textSecondary" component="p">
+              <CardHeader 
+                title={b.title}
+              />
+              
+                <CardContent >
+                <Typography variant="body1" style={{color:'#003c8f'}} component="p">
                   {b.inStock}u. disponibles <br/>
                   </Typography>
-                  <Typography variant="body1" color="textSecondary" component="p">
+                  <Typography variant="body1" style={{color:'#003c8f'}} component="p">
                   {b.currency} {b.price} <br/>
                   </Typography>
                 </CardContent>
-                  <CardContent>
-                    <Typography paragraph>
-                      {b.description}
-                    </Typography>
-                  </CardContent>
-            </Card>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon className={classes.color}/>}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                      style={{background:'#1565c0',color:'white'}}
+                      
+                    >
+                      Descripción
+                    </AccordionSummary>
+
+                    <AccordionDetails>
+                      <Typography>
+                        {b.description}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+              </Card>
             </Grid>
           </>
         )
-      })} 
-     
-      
-      </>
         
+      
+      })} 
+        </Grid>
+      </div>
+      </>
+      
       )
       
    }
