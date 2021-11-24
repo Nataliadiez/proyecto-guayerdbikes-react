@@ -1,62 +1,15 @@
 import TextField from '@mui/material/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@mui/material/Typography';
-import React from 'react';
+import React,{useState} from 'react';
 import Button from '@mui/material/Button';
 import {FormikProvider,useFormik,ErrorMessage} from "formik";
 import * as yup from "yup"
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import {InputLabel,MenuItem,FormControl,Select} from '@material-ui/core/';
 import Axios from "axios"
-
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-        },
-        
-    },
-    errorForm: {
-        color: 'red'
-    },
-    displayFlex: {
-        display:"flex", 
-        flexDirection:"column",
-        justifyContent:"center", 
-        alignItems:"center",
-        width:'100%'
-    },
-    mensaje: {
-        width:'300px',
-        background:'white'
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 221,
-      },
-      selectEmpty: {
-        marginTop: theme.spacing(2),
-      },
-      estiloFormulario: {
-          boxShadow:'5px 5px 10px grey',
-          padding:'10px',
-          paddingTop: '20px',
-          paddingBottom: '20px',
-          width:'45%',
-          borderRadius:'10px',
-          background:'white'
-      }
-    }));
-
-    
-
-
+import AlertaForm from "../AlertaForm/AlertaForm"
+import { useStyles } from './Formulario.style';
 
 const Formulario = () => {
+    const [mensajeModal, setMensajeModal] = useState(false)
 
     const classes = useStyles();
 
@@ -88,6 +41,15 @@ const Formulario = () => {
             
         })
 
+        const formularioEnviado = () => {
+            setMensajeModal(true)
+
+            setTimeout(() => {
+            setMensajeModal(false)
+            }, 5000);
+        
+        }
+
         const formik = useFormik({
             initialValues: {
               nombre: "",
@@ -97,8 +59,10 @@ const Formulario = () => {
               asunto: "venta"
             },
             validationSchema: validaciones,
-            onSubmit:(values => datosSubidosApi(values)) // en este momento se puede pasar la info a una Api
-          })
+            onSubmit:(
+                values => datosSubidosApi(values), // en este momento se puede pasar la info a una Api
+                values => formularioEnviado(values.nombre)
+            )})
 
           const datosSubidosApi = async() => {
             let url = "https://demo2420474.mockable.io/submitForm"
@@ -106,9 +70,13 @@ const Formulario = () => {
             console.log(formik.values)
           }
 
+
+          
+
     return (
-        <div style={{marginTop:100}} className={classes.estiloFormulario}>
-            <Typography style={{marginBottom:'20px'}} align="center" variant="h5" color="initial">Envianos tu mensaje</Typography>
+        <div className="container d-flex justify-content-center align-items-center">
+        <div className={classes.estiloFormulario}>
+        
             <FormikProvider value={formik}>
                 <form onSubmit={formik.handleSubmit} className={classes.displayFlex}>
                 <TextField
@@ -152,15 +120,14 @@ const Formulario = () => {
                     helperText={formik.errors.telefono ? <ErrorMessage name="telefono"/> : ""} 
                     />
                     <br/>
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel id="asunto">Asunto</InputLabel>
+                    <FormControl variant="outlined" className={classes.mensaje}>
+                        <InputLabel  id="asunto">Asunto</InputLabel>
                             <Select
                             id="asunto"
                             value={formik.values.asunto}
                             onChange={formik.handleChange}
                             label="Asunto"
                             name="asunto"
-                            className={classes.mensaje}
                             >
                             <MenuItem value="venta" default>Venta</MenuItem>
                             <MenuItem value="reparacion">Reparación</MenuItem>
@@ -193,9 +160,11 @@ const Formulario = () => {
                     >
                     Enviar
                     </Button>
-                    
+
                 </form> 
             </FormikProvider>
+        </div>
+        {mensajeModal ? <AlertaForm/> : null}
         </div>
     )
 }

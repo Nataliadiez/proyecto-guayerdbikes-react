@@ -10,20 +10,14 @@ const Layout = () => {
         <>
         <Router>    
         <EstilosMaterial>
-            <div className="d-flex flex-column">
-                <div style={{marginBottom:'14px'}}>
-                    <NavBar/>
-                </div>
+            <NavBar/>
                 <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/Nosotros" element={<Nosotros/>}/>
                 <Route path="/Productos" element={<Productos/>}/>
                 <Route path="/Contacto" element={<Contacto/>}/>
                 </Routes>
-                <div>
-                    <Footer/>
-                </div>
-            </div>
+            <Footer/>
         </EstilosMaterial>
         </Router>
             

@@ -1,11 +1,6 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid'
-import Box from "@material-ui/core/Box"
-
+import {Typography,Container,Link,Grid,Box} from '@material-ui/core/';
+import {useStyles} from "./Footer.style"
 
 function Copyright() {
   return (
@@ -20,38 +15,6 @@ function Copyright() {
   );
   
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display:'flex',
-    position: 'absolute',
-    flexDirection: 'column',
-    minHeight: '100vh',
-    width:'100%',
-    height: '20px'
-  },
-  footer: {
-    padding: theme.spacing(1, 1),
-    marginTop: 'auto',
-    backgroundColor: '#004ba0',
-    width:'100%',
-  },
-  grid: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      textAlign: 'center',
-  },
-  img: {
-      width: '30%',
-      filter: "grayscale(0%)",
-  },
-  hoverImg: {
-  "& :hover": {
-    filter: "grayscale(80%)",
-  }
-  },
-
-}));
 
 export default function Footer() {
   const classes = useStyles();

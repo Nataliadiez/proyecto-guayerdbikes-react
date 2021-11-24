@@ -1,61 +1,22 @@
-import React,{useState,useEffect} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import Axios from "axios"
-import {Grid} from '@material-ui/core/'
-
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import React,{useEffect,useState} from 'react';
+import {Grid,Card,CardMedia,CardContent,Typography,AccordionSummary,
+Accordion,AccordionDetails} from '@material-ui/core/'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {conexionProductos} from '../../services/conexionProductos';
+import { useStyles } from './CardProductos.style';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      maxWidth: 345,
-      width: 320,
-      flexGrow: 1,
-      boxShadow:'5px 5px 10px grey',
-      
-    },
-    color: {
-      color:'white'
-    },
-    media: {
-      height: 0,
-      paddingTop: '56.25%', // 16:9
-    },
-    expand: {
-      transform: 'rotate(0deg)',
-      marginLeft: 'auto',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-  }));
-  
   const CardsProductos = () => {
     const classes = useStyles();
-
-    const [bicicletas, setBicicletas] = useState("");
-
-    const llamadaApi = async() => {
-        let url = "https://demo2420474.mockable.io/productList"
-        const respuesta = await Axios.get(url)
-        setBicicletas(respuesta.data)
-    }
+    const [bicicletas, setBicicletas] = useState();
 
     useEffect(() => {
-        llamadaApi();
-    }, [])
+      conexionProductos(setBicicletas);
+  }, [])
   
     return (
       <>
-      <div className="container">
+      <div className="container" style={{marginBottom:'100px'}}>
+      <Typography className={classes.tituloProductos} variant="h4" color="initial"> Productos</Typography>
       <Grid container spacing={3}>
         {bicicletas && bicicletas.map((b) => {
         return(
@@ -67,25 +28,26 @@ const useStyles = makeStyles((theme) => ({
                 image={b.imgUrl}
                 title={b.title}
               />
-              <CardHeader 
-                title={b.title}
-              />
+                <Typography className={classes.titulos} variant="h5" style={{color:'#003c8f'}} component="p">
+                  {b.title}
+                </Typography>
+              
               
                 <CardContent >
-                <Typography variant="body1" style={{color:'#003c8f'}} component="p">
+                <Typography className={classes.fuentes} variant="body1" style={{color:'#003c8f'}} component="p">
                   {b.inStock}u. disponibles <br/>
                   </Typography>
-                  <Typography variant="body1" style={{color:'#003c8f'}} component="p">
+                  <Typography className={classes.fuentes} variant="body1" style={{color:'#003c8f'}} component="p">
                   {b.currency} {b.price} <br/>
                   </Typography>
                 </CardContent>
+
                   <Accordion>
-                    <AccordionSummary
+                    <AccordionSummary 
                       expandIcon={<ExpandMoreIcon className={classes.color}/>}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                       style={{background:'#1565c0',color:'white'}}
-                      
                     >
                       Descripción
                     </AccordionSummary>
@@ -101,10 +63,10 @@ const useStyles = makeStyles((theme) => ({
           </>
         )
         
-      
+        
       })} 
         </Grid>
-      </div>
+        </div>
       </>
       
       )

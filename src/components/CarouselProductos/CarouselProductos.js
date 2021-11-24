@@ -19,15 +19,15 @@ const CarouselProductos = () => {
             <Carousel transitionTime={2} interval={1500} showIndicators={false} showStatus={false} showArrows={false} labels={false} infiniteLoop={true} autoPlay showThumbs={false}>
                 
                 <div>
-                <img style={{width:'45%'}} alt="Logo Guayerd Bikes" src="\bici1 copia.jpg"/>
+                    <img style={{width:'45%'}} alt="Logo Guayerd Bikes" src="\bici1 copia.jpg"/>
                 </div>
 
                 <div>
-                <img style={{width:'45%'}} alt="Logo Guayerd Bikes" src="\bici2.jpg"/>
+                    <img style={{width:'45%'}} alt="Logo Guayerd Bikes" src="\bici2.jpg"/>
                 </div>
 
                 <div>
-                <img style={{width:'45%'}} alt="Logo Guayerd Bikes" src="\bici3.jpg"/>
+                    <img style={{width:'45%'}} alt="Logo Guayerd Bikes" src="\bici3.jpg"/>
                 </div>
             </Carousel>
     )
